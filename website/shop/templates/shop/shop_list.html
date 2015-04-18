@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    {% for shop in object_list %}
+        <p>{{ shop.name }}</p>
+        <p>{{ shop.location}}</p>
+        <div>
+            Products:
+            {% for product  in shop.products.all %}
+                <b>{{product.name}}</b>
+            {% endfor %}
+        </div>
+        <hr>
+    {% endfor %}
+</body>
+</html>
