@@ -1,15 +1,21 @@
 from django.conf.urls import patterns,include, url
 from django.contrib import admin
 from django.conf import settings
+from django.views.generic import TemplateView
+
 from . import views
 
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'website.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    url(r'^$',views.home,name='home'),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    # url(r'^engine/', include('engine.urls')),
+    # url(r'^map/', include('map.urls')),
+    # url(r'^push/', include('push.urls')),
     url(r'^shop/', include('shop.urls')),
-    url(r'^push/', include('push.urls')),
+    url(r'^api/', include('api.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
 )
 

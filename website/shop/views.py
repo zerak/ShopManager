@@ -8,17 +8,27 @@ def home(request):
 
 # Create your views here.
 class ShopListView(ListFilterView):
-    template = 'shop/shop_list.html'
     list_model = Shop
-
-    def get_context_data(self, **kwargs):
-        context = super(ShopListView, self).get_context_data(**kwargs)
-        return context
+    template = 'shop/shop_list.html'
+    context_object_name = 'shop_list'
 
 class ProductListView(ListFilterView):
-    template = 'shop/product_list.html'
     list_model = Product
+    template_name = 'shop/product_list.html'
+    context_object_name = 'product_list'
+
+class ShopDetailView(CustomDetailView):
+    model = Shop
+    template_name = 'shop/shop_detail.html'
 
     def get_context_data(self, **kwargs):
-        context = super(ProductListView, self).get_context_data(**kwargs)
+        context = super(ShopDetailView, self).get_context_data(**kwargs)
+        return context
+
+class ProductDetailView(CustomDetailView):
+    model = Product
+    template = 'shop/product_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
         return context

@@ -10,3 +10,13 @@ class ListFilterView(ListView):
         if self.list_model is not None:
             return self.list_model.objects.filter()
         return []
+
+class CustomDetailView(DetailView):
+    model = None
+
+class ListRelated(DetailView, ListView):
+    related_name = None
+
+    def get_list_queryset(self):
+        obj = self.get_detail_object()
+        return getattr(obj, self.related_name).all()

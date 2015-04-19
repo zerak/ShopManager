@@ -3,8 +3,8 @@
     <title></title>
 </head>
 <body>
-    {% for shop in object_list %}
-        <p>{{ shop.name }}</p>
+    {% for shop in shop_list %}
+        <a href="{% url 'shop_detail' shop.id %}"><p>{{ shop.name }}</p></a>
         <p>{{ shop.location}}</p>
         <div>
             Products:

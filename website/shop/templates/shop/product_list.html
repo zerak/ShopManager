@@ -3,8 +3,8 @@
     <title></title>
 </head>
 <body>
-    {% for product in object_list %}
-        <p>{{ product.name }}</p>
+    {% for product in product_list %}
+        <a href="{% url 'product_detail' product.id %}"><p>{{ product.name }}</p></a>
     {% endfor %}
 </body>
 </html>

@@ -23,7 +23,7 @@ class Shop(models.Model):
     location = models.CharField(u'位置', max_length=100, unique=True)
     introduction = models.TextField(u'简介', blank=True)
     logo = models.ImageField(u'图片', upload_to='Public/shop/shop_logo/',blank=True)
-    area_id = models.IntegerField(u'区域id')
+    area_id = models.IntegerField(u'区域id',blank=True)
     add_date = models.DateTimeField(u'日期',auto_now_add=True)
     products = models.ManyToManyField(Product,verbose_name=u'产品',blank=True)
 

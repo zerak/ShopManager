@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6u2x%fhupxnmu-d+nvuhl7_&san@e4beh&*)l6%rg%e3@i_11s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -87,16 +88,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'django', 
-        'USER': 'root',
-        'PASSWORD': 'z456+987',
-        'HOST': '',
-        'PORT': '3306', 
-    }
-}
+
 DEFAULT_CHARSET = 'utf-8'
 
 # Internationalization
