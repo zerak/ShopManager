@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+    <form method="post" action="do_login">
+        {% csrf_token %}
+            {{ form.as_table }}
+            <button type="submit">OK</button>
+    </form> 
+</body>
+</html>
