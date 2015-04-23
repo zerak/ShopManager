@@ -3,7 +3,15 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.core.exceptions import PermissionDenied
 
-from .models import User
+from .user import User
+
+class ShopEditForm(forms.Form):
+    # to-do
+    pass
+
+class ProductEditForm(forms.Form):
+    # to-do
+    pass
 
 class LoginForm(forms.Form):
     username = forms.CharField(label=u'用户名')

@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from rest_framework import viewsets
 
-from shop.serializers import ShopSerializer, ProductSerializer
-from shop.models import Shop, Product
+from engine.serializers import ShopSerializer, ProductSerializer
+from engine.models import Shop, Product
 
 # Create your views here.
 class ShopViewSet(viewsets.ModelViewSet):

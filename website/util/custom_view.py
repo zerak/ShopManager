@@ -14,6 +14,10 @@ class ListFilterView(ListView):
 class CustomDetailView(DetailView):
     model = None
 
+    def get_context_data(self, **kwargs):
+        context = super(ShopDetailView, self).get_context_data(**kwargs)
+        return context
+
 class ListRelated(DetailView, ListView):
     related_name = None
 

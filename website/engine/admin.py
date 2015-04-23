@@ -4,7 +4,9 @@ from django.contrib import admin
 from django.contrib.auth.models import Group as DjangoGroup
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from engine.models import User
+
+from engine.models import Shop, Product
+from engine.user import User
 
 class UserCreateForm(forms.ModelForm):
     password1 = forms.CharField(label='密码', widget=forms.PasswordInput)
@@ -72,4 +74,13 @@ class MyUserAdmin(UserAdmin):
     ordering = ('created_at',)
     filter_horizontal = ()
 
+class ProductAdmin(admin.ModelAdmin):
+    pass
+
+class ShopAdmin(admin.ModelAdmin):
+    list_display = ('name', 'location', 'area_id', 'add_date')
+    list_filter = ('area_id',)
+
+admin.site.register(Product,ProductAdmin)
+admin.site.register(Shop,ShopAdmin)
 admin.site.register(User, MyUserAdmin)

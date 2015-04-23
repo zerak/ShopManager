@@ -29,6 +29,8 @@ TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'engine.User' 
+
+LOGIN_URL = 'do_login'
 # Application definition
 
 INSTALLED_APPS = (
@@ -42,9 +44,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'api',
     'engine',
-    'map',
-    'push',
-    'shop',
     'util',
 )
 
