@@ -1,10 +1,15 @@
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends 'shop/base.html' %}
+{% block content %}
+<form action="{% url 'product_list' %}" method="GET">
+        <input type="text" name="q" required></input>
+        <button type="submit">搜索Product</button>
+    </form>
     {% for product in product_list %}
+    <div id="item">
         <a href="{% url 'product_detail' product.id %}"><p>{{ product.name }}</p></a>
+    </div>
     {% endfor %}
-</body>
-</html>
+    <div>
+        <a href="{% url 'product_create' %}">add</a>
+    </div>
+{% endblock content%}

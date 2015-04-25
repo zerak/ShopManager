@@ -1,8 +1,6 @@
-<html>
-<head>
-    <title>Shop Detail</title>
-</head>
-<body>
-    {{ shop.name }}
-</body>
-</html>
+{% extends 'shop/base.html' %}
+{% block content %}
+<div id="shop_name">
+        {{ shop.name }}
+    </div> 
+{% endblock content%}

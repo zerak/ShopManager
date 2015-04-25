@@ -4,3 +4,4 @@
 django.ini
 website/media/
 **/migrations/
+**/static/

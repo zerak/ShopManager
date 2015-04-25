@@ -41,6 +41,6 @@ def do_register(request):
 
 @login_required
 def dashboard(request):
-    return render_to_response("engine/dashboard.html",
-                                                    dict(user=request.user),
+    return render_to_response("shop/dashboard.html",
+                                                    dict(user=request.user)
                 )

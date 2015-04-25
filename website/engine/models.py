@@ -2,6 +2,22 @@
 from django.db import models
 
 # Create your models here.
+
+class Shop(models.Model):
+    name = models.CharField(u'名称', max_length=100, unique=True)
+    location = models.CharField(u'位置', max_length=100, unique=True)
+    introduction = models.TextField(u'简介', blank=True)
+    logo = models.ImageField(u'图片', upload_to='Public/shop/shop_logo/',blank=True)
+    area_id = models.IntegerField(u'区域id',blank=True)
+    add_date = models.DateTimeField(u'日期',auto_now_add=True)
+
+    def __unicode__(self):
+        return self.name
+
+    @property
+    def shop_name(self):
+        return self.name
+
 class Product(models.Model):
     PRODUCT_TYPES = (
         ('Food', '食品'),
@@ -13,24 +29,8 @@ class Product(models.Model):
                                                                 choices=PRODUCT_TYPES,
                                                                 blank=True,)
     price = models.FloatField(u'商品价格')
+    shop = models.ForeignKey(Shop, verbose_name=u'商户ID')
 
     def __unicode__(self):
-        return self.name
-
-
-class Shop(models.Model):
-    name = models.CharField(u'名称', max_length=100, unique=True)
-    location = models.CharField(u'位置', max_length=100, unique=True)
-    introduction = models.TextField(u'简介', blank=True)
-    logo = models.ImageField(u'图片', upload_to='Public/shop/shop_logo/',blank=True)
-    area_id = models.IntegerField(u'区域id',blank=True)
-    add_date = models.DateTimeField(u'日期',auto_now_add=True)
-    products = models.ManyToManyField(Product,verbose_name=u'产品',blank=True)
-
-    def __unicode__(self):
-        return self.name
-
-    @property
-    def shop_name(self):
         return self.name
 

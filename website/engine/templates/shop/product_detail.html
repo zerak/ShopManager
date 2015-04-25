@@ -1,10 +1,6 @@
-<html>
-<head>
-    <title>Product Detail</title>
-</head>
-<body>
-    <div>
-        {{ product.name }}
-    </div>
-</body>
-</html>
+{% extends 'shop/base.html' %}
+{% block content %}
+<div>
+    {{ product.name }}
+</div>
+{% endblock content %}
