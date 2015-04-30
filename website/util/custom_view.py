@@ -6,19 +6,11 @@ from django.views.generic.detail import DetailView
 class ListSearchView(ListView):
 
     def get_queryset(self):
-        queryset = super(ProductListView, self).get_queryset()
+        queryset = super(ListSearchView, self).get_queryset()
         q = self.request.GET.get('q')
         if q:
             return queryset.filter(name__icontains=q)
         return queryset
-
-class ListFilterView(ListView):
-    list_model = None
-
-    def get_queryset(self):
-        if self.list_model is not None:
-            return self.list_model.objects.filter()
-        return []
 
 class CustomDetailView(DetailView):
     model = None

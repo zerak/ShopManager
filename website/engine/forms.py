@@ -7,6 +7,11 @@ from django.forms import ModelForm
 from .models import Shop, Product
 from .user import User
 
+class ShopForm(ModelForm):
+    class Meta:
+        model = Shop
+        exclude = ()
+
 class ProductForm(ModelForm):
     shop = None
     class Meta:

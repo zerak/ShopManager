@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*-
 from django.db import models
-
+from django.core.urlresolvers import reverse
 # Create your models here.
 
 class Shop(models.Model):
@@ -18,6 +18,9 @@ class Shop(models.Model):
     def shop_name(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('shop_detail', kwags={'pk', self.pk})
+
 class Product(models.Model):
     PRODUCT_TYPES = (
         ('Food', '食品'),
@@ -33,4 +36,8 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('product_detail', kwags={'pk', self.pk})
+
 

@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate,login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, Http404
 from django.http import HttpResponse, HttpResponseRedirect
 
 from engine.forms import LoginForm, RegisterForm
@@ -13,7 +13,11 @@ def do_login(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = form.get_user()
-            auth_login(request, user)
+            if user.is_store:
+                auth_login(request, user)
+                request.session['shop'] = request.user.own_shop.id
+            else:
+                raise Http404
             return HttpResponseRedirect('/engine/dashboard')
     else:
         form = LoginForm()

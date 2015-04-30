@@ -1,6 +1,9 @@
 {% extends 'shop/base.html' %}
 {% block content %}
-<div id="shop_name">
-        {{ shop.name }}
-    </div> 
+<div id="header">
+    <a href="{% url 'shop_update' %}">update</a>
+</div>
+<div id="container">
+    {{ shop.name }}
+</div>
 {% endblock content%}

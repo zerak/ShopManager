@@ -4,8 +4,8 @@ from django.conf import settings
 from django.views.generic import TemplateView
 
 from views.auth import do_login, do_logout, do_register, dashboard
-from views.edit import ProductCreateView, ProductUpdateView
-from views.shop import products, ShopDetailView, ProductDetailView
+from views.edit import ShopUpdateView, ProductCreateView, ProductUpdateView
+from views.shop import ProductListView, ShopDetailView, ProductDetailView
 
 urlpatterns = patterns('',
     # Examples:
@@ -15,7 +15,8 @@ urlpatterns = patterns('',
     url(r'^register/', do_register, name="do_register"),
     url(r'^dashboard/$', dashboard, name="dashboard"),
     url(r'^shops/$', ShopDetailView.as_view(),name='shop_detail'),
-    url(r'^shops/products/$', products,name='product_list'),
+    url(r'^shops/edit/$', ShopUpdateView.as_view(),name='shop_update'),
+    url(r'^shops/products/$', ProductListView.as_view(),name='product_list'),
     url(r'^shops/products/(?P<pk>[\d]+)/$', ProductDetailView.as_view(),name='product_detail'),
     url(r'^shops/products/create/$', ProductCreateView.as_view(),name='product_create'),
     url(r'^shops/products/edit/(?P<pk>[\d]+)/$', ProductUpdateView.as_view(),name='product_update'),
