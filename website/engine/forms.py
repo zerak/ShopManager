@@ -11,14 +11,16 @@ class MyForm(ModelForm):
     shop = None
 
     def save(self, commit=True):
-        if self.shop:
+        try:
             object_ = super(MyForm, self).save(commit=False)
-            object_.shop = self.shop
+            if self.shop:
+                object_.shop = self.shop
             if commit:
                 object_.save()
             self.shop = None
             return object_
-        raise forms.ValidationError()
+        except Exception:
+           raise forms.ValidationError()
 
 class ShopForm(ModelForm):
     class Meta:

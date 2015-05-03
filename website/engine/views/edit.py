@@ -26,6 +26,12 @@ class ProductUpdateView(LoginRequiredMixin, ModelActionMixin, UpdateView):
 
     model = Product
 
+    def form_valid(self, form):
+        return super(ProductUpdateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('product_list')
+
 class ShopUpdateView(LoginRequiredMixin, ModelActionMixin, UpdateView):
     success_msg = 'Shop Updated!'
     form_class = ShopForm
