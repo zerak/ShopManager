@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group as DjangoGroup
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from engine.models import Shop, Product
+from engine.models import Shop, Product, New
 from engine.user import User
 
 class UserCreateForm(forms.ModelForm):
@@ -77,10 +77,14 @@ class MyUserAdmin(UserAdmin):
 class ProductAdmin(admin.ModelAdmin):
     pass
 
+class NewAdmin(admin.ModelAdmin):
+    pass
+
 class ShopAdmin(admin.ModelAdmin):
     list_display = ('name', 'location', 'area_id', 'add_date')
     list_filter = ('area_id',)
 
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Shop,ShopAdmin)
+admin.site.register(New,NewAdmin)
 admin.site.register(User, MyUserAdmin)

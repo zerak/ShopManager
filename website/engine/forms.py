@@ -4,29 +4,36 @@ from django.contrib.auth import authenticate
 from django.core.exceptions import PermissionDenied
 from django.forms import ModelForm
 
-from .models import Shop, Product
+from .models import Shop, Product, New
 from .user import User
+
+class MyForm(ModelForm):
+    shop = None
+
+    def save(self, commit=True):
+        if self.shop:
+            object_ = super(MyForm, self).save(commit=False)
+            object_.shop = self.shop
+            if commit:
+                object_.save()
+            self.shop = None
+            return object_
+        raise forms.ValidationError()
 
 class ShopForm(ModelForm):
     class Meta:
         model = Shop
         exclude = ()
 
-class ProductForm(ModelForm):
-    shop = None
+class ProductForm(MyForm):
     class Meta:
         model = Product
         exclude = ('shop',)
 
-    def save(self, commit=True):
-        if self.shop:
-            product = super(ProductForm, self).save(commit=False)
-            product.shop = self.shop
-            if commit:
-                product.save()
-            self.shop = None
-            return product
-        raise forms.ValidationError()
+class NewForm(MyForm):
+    class Meta:
+        model = New
+        exclude = ('shop',)
 
 class LoginForm(forms.Form):
     username = forms.CharField(label=u'用户名')

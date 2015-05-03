@@ -24,6 +24,7 @@ class Shop(models.Model):
 class Product(models.Model):
     PRODUCT_TYPES = (
         ('Food', '食品'),
+        ('Daily', '日用品'),
     )
     name = models.CharField(u'商品名称',max_length=100)
     image =  models.ImageField(u'商品图片',upload_to='Public/shop/products/',
@@ -40,4 +41,14 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('product_detail', kwags={'pk', self.pk})
 
+class New(models.Model):
+    title = models.CharField(u'标题', max_length=60)
+    body = models.TextField(u'内容')
+    add_date = models.DateTimeField(u'发布日期', auto_now_add=True)
+    shop = models.ForeignKey(Shop, verbose_name=u'商户ID')
 
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        ordering = ('-add_date',)

@@ -1,0 +1,42 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'engine/css/timeline.css' %}">
+{% endblock css %}
+{% block content %}
+    <h2> 新闻管理</h2>
+        <div class="btn-group" role="group">
+            <a href="{% url 'new_create' %}" class="btn btn-default">添加新闻</a>
+        </div>
+    <div class="row">
+            <ul class="timeline">
+            {% for new in new_list %}
+            {% if forloop.counter|divisibleby:"2" %}<li>
+                {% else %}<li class="timeline-inverted">{% endif %}
+                      <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                      {% if forloop.counter|divisibleby:"2" %}<div class="timeline-panel animated slideInLeft">
+                        {% else %} <div class="timeline-panel animated slideInRight">
+                      {% endif %}
+                        <div class="timeline-heading">
+                          <h4 class="timeline-title">{{ new.title }}</h4>
+                          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{ new.add_date }}</small></p>
+                        </div>
+                        <div class="timeline-body">
+                          <p>{{ new.body }}</p>
+                          <hr>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+                              <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="#" class="editbtn" data="{$vo.new_id}">编辑</a></li>
+                              <li><a href="#" class="delbtn" data="{$vo.new_id}">删除</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+{% endblock content%}
+

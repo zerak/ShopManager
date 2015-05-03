@@ -5,45 +5,98 @@
     <meta charset="utf-8">
     <title>商户管理后台</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+   <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
    <link rel="stylesheet" href="{% static 'engine/css/styles.css' %}">
-    <script src="{% static 'engine/js/responsive-nav.js' %}"></script>
     {% block css %}{% endblock css %}
     {% block js %}{% endblock js %}
   </head>
   <body>
-    <div class="top">
-      <span>商户管理后台</span>
-    </div>
-    <div role="navigation" id="foo" class="nav-collapse">
-      <ul>
-        <li  class="active"><a href="{% url 'shop_detail' %}">店铺信息</a></li>
-        <li><a href="#">店铺地理信息</a></li>
-        <li><a href="{% url 'product_list' %}">产品信息</a></li>
-        <li><a href="#">推送管理</a></li>
-        <li><a href="#">广告管理</a></li>
-        <li><a href="{% url 'do_logout' %}">注销</a></li>
-      </ul>
-    </div>
-    
-    <div role="main" class="main">
-      <a href="#nav" class="nav-toggle">导航</a> 
-<!--       <div class="operater">
-        <ul>
-            <li><a href="#"><img src="{% static 'engine/images/write.jpg' %}"></a></li>
-            <li><a href="#"><img src="{% static 'engine/images/main.jpg' %}"></a></li>
-            <li><a href="#"><img src="{% static 'engine/images/dele.jpg' %}"></a></li>
-            <li><a href="#"><img src="{% static 'engine/images/list.jpg' %}"></a></li>
-            <li><a href="#"><img src="{% static 'engine/images/admin.jpg' %}"></a></li>
-        </ul>
-      </div> -->
-      <!--<h1>Prototype</h1>-->
-     <div style="width:100%;height:90%;">
-            {% block content %}
-            {% endblock content %}
+
+  <div class="header">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-5">
+                <!-- Logo -->
+                <div class="logo">
+                   <h1><a href="index.html">商户管理后台</a></h1>
+                </div>
+             </div>
+             <div class="col-md-5">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="input-group form">
+                         <input type="text" class="form-control" placeholder="Search...">
+                         <span class="input-group-btn">
+                           <button class="btn btn-primary" type="button">搜索</button>
+                         </span>
+                    </div>
+                  </div>
+                </div>
+             </div>
+             <div class="col-md-2">
+                <div class="navbar navbar-inverse" role="banner">
+                    <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                      <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">账户 <b class="caret"></b></a>
+                          <ul class="dropdown-menu animated fadeInUp">
+                            <li><a href="#">修改密码</a></li>
+                            <li><a href="{% url 'do_logout' %}">注销</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </nav>
+                </div>
+             </div>
+          </div>
+       </div>
+  </div>
+
+    <div class="page-content">
+      <div class="row">
+      <div class="col-md-2">
+        <div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+
+                    <li class="current"><a href="{% url 'dashboard' %}"><i class="glyphicon glyphicon-home"></i> 控制面板</a></li>
+                    <li><a href="{% url 'geo' %}"><i class="glyphicon glyphicon-calendar"></i> 店铺信息</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-stats"></i> 店铺数据</a></li>
+                    <li><a href="{% url 'product_list' %}"><i class="glyphicon glyphicon-list"></i> 产品信息</a></li>
+                    <li><a href="{% url 'new_list' %}"><i class="glyphicon glyphicon-pencil"></i> 新闻管理</a></li>
+                    <li><a href="{% url 'ads' %}"><i class="glyphicon glyphicon-record"></i>广告管理</a></li>
+                    <li class="submenu">
+                         <a href="#">
+                            <i class="glyphicon glyphicon-list"></i> Pages
+                            <span class="caret pull-right"></span>
+                         </a>
+                         <!-- Sub menu -->
+                         <ul>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="signup.html">Signup</a></li>
+                        </ul>
+                    </li>
+                </ul>
+             </div>
+      </div>
+      <div class="col-md-10">
+        <div class="content-box-large">
+          {% block content %}
+          {% endblock content %}
+        </div>
       </div>
     </div>
-    <script>
-      var navigation = responsiveNav("foo", {customToggle: ".nav-toggle"});
-    </script>
+    </div>
+
+    <footer>
+         <div class="container">
+            <div class="copy text-center">
+               Copyright 2014 <a href='#'>Website</a>
+            </div>
+         </div>
+      </footer>
+      <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+      <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.js"></script>
+    <script src="{% static 'engine/js/custom.js' %}"></script>
   </body>
 </html>
