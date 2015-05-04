@@ -1,10 +1,8 @@
 {% extends 'shop/base.html' %}
 {% block content %}
 <form method="post" action="">
-    <table class="form-table">
     {% csrf_token %}
-    {{ form.as_table }}
-</table>
-    <input type="submit" value="OK">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">提交</button>
 </form>
  {% endblock content%}

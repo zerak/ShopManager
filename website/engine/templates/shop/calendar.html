@@ -1,0 +1,42 @@
+{% extends 'shop/base.html' %}
+{% load fullcalendar_tags %}
+{% block css %}
+        {% fullcalendar_css %}
+        {% fullcalendar_print_css %}
+{% endblock css %}
+{% block js %}
+        {% fullcalendar_jquery %}
+        {% fullcalendar_jquery_ui %}
+        {% fullcalendar_javascript %}
+{% calendar_init calendar_config_options%}
+{% endblock js %}
+
+{% block content %}
+<h2>事件日历 
+    <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">添加事件</button>
+</h2>
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <form method="post" action="{% url 'calendar' %}">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">添加事件</h4>
+          </div>
+          <div class="modal-body">
+            {% csrf_token %}
+            {{ form.as_p }}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="submit" class="btn btn-primary">保存</button>
+          </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% load fullcalendar_tags %}
+
+    {% calendar %}
+ {% endblock content%}

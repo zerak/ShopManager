@@ -10,6 +10,7 @@ from views.geo import geo
 from views.stat import stat
 from views.shop import ProductListView, ShopDetailView, ProductDetailView
 from views.new import NewCreateView, NewListView
+from views.calendar import  EventsView, all_events
 
 urlpatterns = patterns('',
     # Examples:
@@ -29,4 +30,7 @@ urlpatterns = patterns('',
     url(r'^shops/products/(?P<pk>[\d]+)/$', ProductDetailView.as_view(),name='product_detail'),
     url(r'^shops/products/create/$', ProductCreateView.as_view(),name='product_create'),
     url(r'^shops/products/edit/(?P<pk>[\d]+)/$', ProductUpdateView.as_view(),name='product_update'),
+
+    url(r'^shops/calendar$', EventsView.as_view(), name='calendar'),
+    url(r'^shops/all_events/', all_events, name='all_events'),
 )

@@ -7,6 +7,8 @@ from django.forms import ModelForm
 from .models import Shop, Product, New
 from .user import User
 
+from fullcalendar.models import CalendarEvent
+
 class MyForm(ModelForm):
     shop = None
 
@@ -20,7 +22,12 @@ class MyForm(ModelForm):
             self.shop = None
             return object_
         except Exception:
-           raise forms.ValidationError()
+           raise forms.ValidationError(u'')
+
+class EventForm(MyForm):
+    class Meta:
+        model = CalendarEvent
+        exclude = ('shop',)
 
 class ShopForm(ModelForm):
     class Meta:

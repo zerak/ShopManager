@@ -21,6 +21,10 @@ class Shop(models.Model):
     def get_absolute_url(self):
         return reverse('shop_detail', kwags={'pk', self.pk})
 
+    class Meta:
+        verbose_name = u'商户'
+        verbose_name_plural = u'商户'
+
 class Product(models.Model):
     PRODUCT_TYPES = (
         ('Food', '食品'),
@@ -41,6 +45,10 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('product_detail', kwags={'pk', self.pk})
 
+    class Meta:
+        verbose_name = u'商品'
+        verbose_name_plural = u'商品'
+
 class New(models.Model):
     title = models.CharField(u'标题', max_length=60)
     body = models.TextField(u'内容')
@@ -51,4 +59,7 @@ class New(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = u'新闻'
+        verbose_name_plural = u'新闻'
         ordering = ('-add_date',)
+

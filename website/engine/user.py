@@ -45,6 +45,8 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = ('email',)
 
     class Meta:
+        verbose_name = u'用户'
+        verbose_name_plural = u'用户'
         ordering = ('created_at',)
 
     def __unicode__(self):
