@@ -1,4 +1,54 @@
 {% extends 'shop/base.html' %}
+{% block js %}
+<script type="text/javascript" src="http://cdn.bootcss.com/highcharts/4.1.4/highcharts.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/highcharts/4.1.4/modules/exporting.js"></script>
+<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        title: {
+            text: '月均用户流量',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: ['一月', '二月', '三月', '四月', '五月', '六月',
+                '七月', '八月', '九月', '十月', '十一月', '十二月']
+        },
+        yAxis: {
+            title: {
+                text: '页面浏览量'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: 'K'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: '累计用户PV',
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        }, {
+            name: '新用户PV',
+            data: [3.0, 0.8, 5.7, 11.3, 17.0, 18.0, 22.3, 21.3, 20.1, 14.1, 8.6, 2.5]
+        }, {
+            name: '活跃用户PV',
+            data: [4.0, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        }]
+    });
+});
+</script>
+{% endblock js %}
 {% block content %}
-    <h2>店铺数据</h2>
+    <h2>用户流量</h2>
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
+
+    </div>
 {% endblock content%}

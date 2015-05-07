@@ -1,14 +1,26 @@
 {% extends 'shop/base.html' %}
+{% load staticfiles %}
 {% load fullcalendar_tags %}
 {% block css %}
         {% fullcalendar_css %}
         {% fullcalendar_print_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'engine/css/bootstrap-datetimepicker.min.css' %}">
 {% endblock css %}
 {% block js %}
         {% fullcalendar_jquery %}
         {% fullcalendar_jquery_ui %}
         {% fullcalendar_javascript %}
 {% calendar_init calendar_config_options%}
+<script type="text/javascript" src="http://cdn.bootcss.com/moment.js/2.10.2/moment.min.js"></script>
+<script type="text/javascript" src="{% static 'engine/js/bootstrap-datetimepicker.js' %}"></script>
+<script type="text/javascript">
+$('#date-start').datetimepicker({
+  autoclose : true
+    });
+$('#date-end').datetimepicker({
+        autoclose : true
+    });
+</script>
 {% endblock js %}
 
 {% block content %}
@@ -25,7 +37,32 @@
           </div>
           <div class="modal-body">
             {% csrf_token %}
-            {{ form.as_p }}
+            <div class="form-group">
+            <label for="id_title">标题:</label>
+                    {{form.title }}
+            </div>
+            <div class="input-append date" id="date-start" data-date="" data-date-format="yyyy/mm/dd hh:ii">
+                  <div class="form-group">
+                  <label for="id_start">开始时间:</label>
+                   {{ form.start }}
+                </div>
+              <span class="add-on">
+                <i class="icon-th"></i>
+            </span>
+            </div>
+             <div class="input-append date" id="date-end" data-date="" data-date-format="yyyy/mm/dd hh:ii">
+              <div class="form-group">
+                  <label for="id_end">结束时间:</label>
+                   {{ form.end }}
+                </div>
+              <span class="add-on">
+                <i class="icon-th"></i>
+            </span>
+          </div>
+           <div class="form-group">
+                  <label for="id_all_day">全日事件:</label>
+                   {{ form.all_day }}
+                </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

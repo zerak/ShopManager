@@ -1,4 +1,18 @@
 {% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% block css %}
+<link href="{% static 'engine/css/bootstrap3-wysihtml5.min.css' %}" rel="stylesheet"/>
+{% endblock css %}
+{% block js %}
+<script src="{% static 'engine/js/bootstrap3-wysihtml5.all.min.js' %}"></script>
+<script src="{% static 'engine/js/bootstrap-wysihtml5.zh-CN.js' %}"></script>
+<script type="text/javascript">
+$(".editor").css("width","70%");
+    $(".editor").wysihtml5({
+        locale: "zh-CN"
+    });
+</script>
+{% endblock js %}
 {% block content %}
 <form method="post" action="">
     {% csrf_token %}
