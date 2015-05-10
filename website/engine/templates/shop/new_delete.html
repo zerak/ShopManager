@@ -1,0 +1,9 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<h3>确定要删除吗?</h3>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">是的，我确定</button>
+  <button type="reset" class="btn btn-primary" onclick="{% url 'new_list' %}">取消</button>
+</form>
+{% endblock content %}

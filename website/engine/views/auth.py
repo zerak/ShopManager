@@ -23,8 +23,8 @@ def do_login(request):
         form = LoginForm()
     return render(request,
                             'engine/login.html',
-                            dict(form=form)
-                )
+                            {"form": form},
+                        )
 
 @login_required
 def do_logout(request):
@@ -40,11 +40,31 @@ def do_register(request):
         form = RegisterForm()
     return render(request,
                             'engine/register.html',
-                            dict(form=form),
-                )
+                            {"form": form},
+                        )
+
+@login_required
+def reset_passwd(request):
+    if request.method == 'POST':
+        old_passwd = request.POST['old_passwd']
+        new_passwd = request.POST['new_passwd']
+        status = 0
+        user = authenticate(username=request.user.name, password=old_passwd)
+        if user:
+            user.set_password(new_passwd)
+            user.save()
+            status = 1
+        return render(request,
+                                 "engine/passwd.html",
+                                 {"status":status }
+                            )
+    return render(request,
+                            "engine/passwd.html",
+                            {"user":request.user},
+                        )
 
 @login_required
 def dashboard(request):
     return render_to_response("shop/dashboard.html",
-                                                    dict(user=request.user)
-                )
+                                                    {"user":request.user}
+                                             )

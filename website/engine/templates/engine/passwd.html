@@ -1,0 +1,30 @@
+{% extends 'shop/base.html' %}
+{% block js %}
+<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>
+<script type="text/javascript">
+    {% if status == 1 %}
+        $.bootstrapGrowl("修改成功,请重新登录!", {type: 'success'});
+        setTimeout(function(){
+          window.location.href = '/engine/login';
+        },3000);
+     {% elif status == 0 %}
+        $.bootstrapGrowl("修改失败!", {type: 'danger'});
+    {% endif %}
+</script>
+
+{% endblock js %}
+{% block content %}
+<h2>修改密码</h2>
+<form method="post" action="{% url 'do_reset' %}">
+    {% csrf_token %}
+  <div class="form-group" method="post" action="{% url 'do_reset' %}">
+    <label for="passwd1">当前密码:</label>
+    <input type="password" class="form-control" id="passwd1" placeholder="当前密码" name="old_passwd">
+  </div>
+  <div class="form-group">
+    <label for="passwd2">新密码:</label>
+    <input type="password" class="form-control" id="passwd2" placeholder="新密码" name="new_passwd">
+  </div>
+  <button type="submit" class="btn btn-primary" id="ok">确认</button>
+</form>
+{% endblock %}

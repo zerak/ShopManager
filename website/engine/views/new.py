@@ -1,6 +1,6 @@
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 from engine.models import Shop, New
 from engine.forms import NewForm
@@ -25,3 +25,18 @@ class NewListView(LoginRequiredMixin, ListSearchView):
 
     def get_object(self, *args, **kw):
         return get_object_or_404(New, shop_id=self.request.session['shop'])
+
+class NewUpdateView(LoginRequiredMixin, ModelActionMixin, UpdateView):
+    model = New
+    form_class = NewForm
+    
+    template_name = 'shop/new_edit.html'
+
+    def get_success_url(self):
+        return reverse('new_list')
+
+class NewDeleteView(LoginRequiredMixin, DeleteView):
+    model = New
+    success_url = reverse_lazy('new_list') 
+
+    template_name = 'shop/new_delete.html'

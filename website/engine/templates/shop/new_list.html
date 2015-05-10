@@ -22,15 +22,18 @@
                           <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{ new.add_date }}</small></p>
                         </div>
                         <div class="timeline-body">
-                          <p>{{ new.body }}</p>
+                          <p>{% autoescape off %}
+                            {{ new.body}}
+                            {% endautoescape %}</p>
                           <hr>
                           <div class="btn-group">
                             <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
                               <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
                             </button>
+
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="#" class="editbtn" data="{$vo.new_id}">编辑</a></li>
-                              <li><a href="#" class="delbtn" data="{$vo.new_id}">删除</a></li>
+                              <li><a href="{% url 'new_update' new.id %}" class="editbtn">编辑</a></li>
+                              <li><a href="{% url 'new_delete' new.id %}" class="delbtn">删除</a></li>
                             </ul>
                           </div>
                         </div>
