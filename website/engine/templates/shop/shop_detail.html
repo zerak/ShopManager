@@ -5,6 +5,7 @@
     <a href="{% url 'shop_update' %}">更新</a>
 </div>
 <div id="container">
+    <img src="{{MEDIA_URL}}/{{ shop.logo }}">
     {{ shop.name }}
 </div>
 {% endblock content%}

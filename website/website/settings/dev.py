@@ -5,7 +5,9 @@ TEMPLATE_DEBUG = True
 
 APPS = (
     # 'django_extensions',
+    'gunicorn',
 )
+
 
 INSTALLED_APPS += APPS
 

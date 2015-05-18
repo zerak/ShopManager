@@ -1,11 +1,16 @@
 {% extends 'shop/base.html' %}
+{% load bootstrap3 %}
 {% block content %}
 
 <form method="post" action="">
     <table class="form-table">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% bootstrap_form form %}
 </table>
-<input type="submit" value="OK">
+ {% buttons %}
+        <button type="submit" class="btn btn-primary">
+             确认修改
+        </button>
+    {% endbuttons %}
 </form>
 {% endblock content%}

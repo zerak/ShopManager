@@ -39,4 +39,4 @@ class NewDeleteView(LoginRequiredMixin, DeleteView):
     model = New
     success_url = reverse_lazy('new_list') 
 
-    template_name = 'shop/new_delete.html'
+    template_name = 'shop/cf_delete.html'

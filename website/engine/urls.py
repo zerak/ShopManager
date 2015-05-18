@@ -8,7 +8,7 @@ from views.edit import ShopUpdateView, ProductCreateView, ProductUpdateView
 from views.ads import index, AdsView
 from views.geo import geo
 from views.stat import stat, data
-from views.shop import ProductListView, ShopDetailView, ProductDetailView
+from views.shop import ShopDetailView, ProductListView, ProductDetailView, ProductDeleteView
 from views.new import NewCreateView, NewListView, NewUpdateView, NewDeleteView
 from views.calendar import  EventsView, all_events
 
@@ -28,14 +28,17 @@ urlpatterns = patterns('',
     url(r'^shops/geo/$', geo, name='geo'),
     url(r'^shops/data/$', data, name='shop_data'),
     url(r'^shops/stat/$', stat, name='stat'),
+
     url(r'^shops/news/$', NewListView.as_view(),name='new_list'),
     url(r'^shops/news/create/$', NewCreateView.as_view(),name='new_create'),
     url(r'^shops/news/edit/(?P<pk>[\d]+)/$', NewUpdateView.as_view(),name='new_update'),
     url(r'^shops/news/delete/(?P<pk>[\d]+)/$', NewDeleteView.as_view(),name='new_delete'),
+    
     url(r'^shops/products/$', ProductListView.as_view(),name='product_list'),
     url(r'^shops/products/(?P<pk>[\d]+)/$', ProductDetailView.as_view(),name='product_detail'),
     url(r'^shops/products/create/$', ProductCreateView.as_view(),name='product_create'),
     url(r'^shops/products/edit/(?P<pk>[\d]+)/$', ProductUpdateView.as_view(),name='product_update'),
+    url(r'^shops/products/delete/(?P<pk>[\d]+)/$', ProductDeleteView.as_view(),name='product_delete'),
 
     url(r'^shops/calendar$', EventsView.as_view(), name='calendar'),
     url(r'^shops/all_events/', all_events, name='all_events'),

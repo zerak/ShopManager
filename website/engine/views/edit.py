@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, UpdateView
 
@@ -12,7 +12,7 @@ class ProductCreateView(LoginRequiredMixin, ModelActionMixin, CreateView):
     template_name = 'shop/product_create.html'
 
     def get_success_url(self):
-        return reverse('product_detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy('product_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         product_form = form
@@ -20,7 +20,6 @@ class ProductCreateView(LoginRequiredMixin, ModelActionMixin, CreateView):
         return super(ProductCreateView, self).form_valid(form)
 
 class ProductUpdateView(LoginRequiredMixin, ModelActionMixin, UpdateView):
-    success_msg = "Product Updated!"
     form_class = ProductForm
     template_name = 'shop/product_edit.html'
 
@@ -30,10 +29,9 @@ class ProductUpdateView(LoginRequiredMixin, ModelActionMixin, UpdateView):
         return super(ProductUpdateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('product_list')
+        return reverse_lazy('product_list')
 
 class ShopUpdateView(LoginRequiredMixin, ModelActionMixin, UpdateView):
-    success_msg = 'Shop Updated!'
     form_class = ShopForm
     template_name = 'shop/shop_edit.html'
 
@@ -43,4 +41,4 @@ class ShopUpdateView(LoginRequiredMixin, ModelActionMixin, UpdateView):
         return get_object_or_404(Shop, pk=self.request.session['shop'])
 
     def get_success_url(self):
-        return reverse('shop_detail')
+        return reverse_lazy('shop_detail')

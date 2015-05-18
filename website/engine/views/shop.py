@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.views.generic import DeleteView
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.core.urlresolvers import reverse_lazy
 
 from engine.models import Shop, Product
 from util.mixins import LoginRequiredMixin, JSONResponseMixin
@@ -14,7 +16,7 @@ class ProductListView(LoginRequiredMixin, ListSearchView):
     def get_object(self, *args, **kw):
         return get_object_or_404(Product, shop_id=self.request.session['shop'])
 
-class ProductDetailView(LoginRequiredMixin, CustomDetailView, JSONResponseMixin):
+class ProductDetailView(LoginRequiredMixin, CustomDetailView):
     model = Product
     template_name = 'shop/product_detail.html'
 
@@ -25,13 +27,21 @@ class ProductDetailView(LoginRequiredMixin, CustomDetailView, JSONResponseMixin)
                                 {"product":product}
                     )
 
-    def delete(self, request, pk ,format=None):
-        product = get_object_or_404(Product, id=pk)
-        product.delete()
-        return self.render_to_response({"status":True})
+    # def delete(self, request, pk ,format=None):
+    #     product = get_object_or_404(Product, id=pk)
+    #     product.delete()
+    #      # Json reponsed to Ajax Callback!
+    #     return self.render_to_response({"status":True})
 
-    def render_to_response(self, context, **response_kwargs):
-        return self.render_to_json_response(context, **response_kwargs)
+    # # implements JSONResponseMixin Mixin!
+    # def render_to_response(self, context, **response_kwargs):
+    #     return self.render_to_json_response(context, **response_kwargs)
+
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    model = Product
+    success_url = reverse_lazy('product_list') 
+
+    template_name = 'shop/cf_delete.html'
 
 class ShopDetailView(LoginRequiredMixin, CustomDetailView):
 

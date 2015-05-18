@@ -24,6 +24,7 @@ SECRET_KEY = '6u2x%fhupxnmu-d+nvuhl7_&san@e4beh&*)l6%rg%e3@i_11s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
@@ -41,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_admin_bootstrapped',
     'django.contrib.admin',
+    'bootstrap3',
     'rest_framework',
     'api',
     'engine',
@@ -55,6 +57,17 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     )
+}
+
+BOOTSTRAP3 = {
+
+    'jquery_url': 'http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js',
+
+    # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
+    'css_url': 'http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css',
+
+    # The complete URL to the Bootstrap JavaScript file (None means derive it from base_url)
+    'javascript_url': 'http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.js',
 }
 
 # REST_FRAMEWORK = {
@@ -124,8 +137,11 @@ USE_TZ = True
 
 MEDIA_ROOT = '/home/lwt/env/website/media/'
 
+MEDIA_URL = '/media/'
+
 STATIC_URL = '/static/'
 
+STATIC_ROOT = '/home/lwt/env/website/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/').replace('\\','/')
 
 STATICFILES_DIRS = (

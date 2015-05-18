@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load bootstrap3 %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>商户管理后台</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-   <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% bootstrap_css_url %}">
    <link rel="stylesheet" href="{% static 'engine/css/styles.css' %}">
    <link href="{% static 'engine/css/bootstrap3-wysihtml5.min.css' %}" rel="stylesheet"/>
     {% block css %}{% endblock css %}
@@ -95,13 +96,12 @@
             </div>
          </div>
       </footer>
-      <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-      <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.js"></script>
+      <script type="text/javascript" src="{% bootstrap_jquery_url %}"></script>
+      <script type="text/javascript" src="{% bootstrap_javascript_url %}"></script>
     <script src="{% static 'engine/js/custom.js' %}"></script>
     <script src="{% static 'engine/js/bootstrap3-wysihtml5.all.min.js' %}"></script>
 <script src="{% static 'engine/js/bootstrap-wysihtml5.zh-CN.js' %}"></script>
 <script type="text/javascript">
-$(".editor").css("width","70%");
     $(".editor").wysihtml5({
         locale: "zh-CN"
     });
