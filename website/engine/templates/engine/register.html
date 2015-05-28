@@ -1,5 +1,5 @@
-
 {% load staticfiles %}
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,11 +32,9 @@
                             <h6>注册</h6>
 
                                 <form method="post" action="do_login">
-                                <table>
                                     {% csrf_token %}
-                                        {{ form.as_table }}
-                            </table>             
-                                        <input type="submit" valud="OK">
+                                    {% bootstrap_form form %}
+                                        <input type="submit" valud="OK" class="btn btn-primary">
                                 </form>
                         </div>
                     </div>

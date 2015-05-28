@@ -7,8 +7,8 @@
 {% block content %}
     <h2>产品管理</h2>
     <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a type="button" class="btn btn-outline btn-default" href="{% url 'product_create' %}">添加产品</a>   
+                <div class="panel-heading ">
+                    <a type="button" class="btn btn-raised btn-info" href="{% url 'product_create' %}">添加产品</a>   
                 </div>
 
                 <div class="panel-body">
@@ -47,5 +47,10 @@
 <script src="{% static 'engine/js/metisMenu.min.js' %}"></script>
 <script src="{% static 'engine/js/jquery.dataTables.js' %}"></script>
 <script src="{% static 'engine/js/dataTables.bootstrap.js' %}"></script>
-
+<script>
+    $(document).ready(function() {
+        $('#products_table').dataTable();
+        $('.table-responsive').css("overflow-x","hidden");
+    });
+</script>
 {% endblock js %}

@@ -25,9 +25,8 @@ $('#date-end').datetimepicker({
 {% endblock js %}
 
 {% block content %}
-<h2>事件日历 
-    <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">添加事件</button>
-</h2>
+<h2>事件日历 </h2>
+    <button type="button" class="btn btn-info btn-raised " data-toggle="modal" data-target="#myModal">添加事件</button>
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <form method="post" action="{% url 'calendar' %}">
@@ -51,10 +50,14 @@ $('#date-end').datetimepicker({
                 <i class="icon-th"></i>
             </span>
           </div>
-                  {% bootstrap_field form.all_day %}
+          <div class="togglebutton">
+              <label>
+                  <input type="checkbox" checked="" name="all_day" id="id_all_day"><span class="toggle"></span> 全日事件
+              </label>
+          </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
             <button type="submit" class="btn btn-primary">保存</button>
           </div>
       </form>

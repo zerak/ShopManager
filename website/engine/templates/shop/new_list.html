@@ -6,7 +6,7 @@
 {% block content %}
     <h2> 新闻管理</h2>
         <div class="btn-group" role="group">
-            <a href="{% url 'new_create' %}" class="btn btn-default">添加新闻</a>
+            <a href="{% url 'new_create' %}" class="btn btn-info btn-raised">添加新闻</a>
         </div>
     <div class="row">
             <ul class="timeline">
@@ -27,15 +27,14 @@
                             {% endautoescape %}</p>
                           <hr>
                           <div class="btn-group">
-                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                              <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
-                            </button>
-
-                            <ul class="dropdown-menu" role="menu">
+                                    <a href="javascript:void(0)" class="btn btn-danger">操作<div class="ripple-wrapper"></div></a>
+                                    <a href="#" data-target="#" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span><div class="ripple-wrapper"></div></a>
+                                    <ul class="dropdown-menu">
                               <li><a href="{% url 'new_update' new.id %}" class="editbtn">编辑</a></li>
                               <li><a href="{% url 'new_delete' new.id %}" class="delbtn">删除</a></li>
-                            </ul>
-                          </div>
+                                    </ul>
+                                </div>
+
                         </div>
                     </li>
                 {% endfor %}

@@ -40,7 +40,7 @@ class ProductForm(MyForm):
         exclude = ('shop',)
 
 class NewForm(MyForm):
-    body = forms.CharField(label=u'内容',widget=forms.Textarea(attrs={'class': 'editor'}))
+    body = forms.CharField(label=u'内容',widget=forms.Textarea(attrs={'class': 'editor','placeholder':u'请在此输入内容'}))
     class Meta:
         model = New
         exclude = ('shop',)
